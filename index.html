@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NSOC — NYU Software Supply Chain Security Operations Center</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Outfit:wght@300;400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple-900: #1a0a3d;
+    --purple-800: #2d1570;
+    --purple-700: #3d1a9e;
+    --purple-600: #4c22c7;
+    --purple-500: #5e35d4;
+    --purple-400: #7c5ce8;
+    --purple-300: #a48ef0;
+    --purple-200: #c9baf7;
+    --purple-100: #e8e2fb;
+    --purple-50: #f4f1fe;
+    --ink: #0d0820;
+    --ink-soft: #1c1535;
+    --white: #ffffff;
+    --off-white: #faf9fe;
+    --mono-accent: #00ff88;
+    --grid-color: rgba(78, 34, 199, 0.08);
+    --border: 1px solid rgba(78, 34, 199, 0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--off-white);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* Grid texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--grid-color) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    background: rgba(250, 249, 254, 0.9);
+    backdrop-filter: blur(12px);
+    border-bottom: var(--border);
+  }
+
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--ink);
+  }
+
+  .nav-logo-box {
+    width: 36px;
+    height: 36px;
+    border: 2px solid var(--purple-600);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--purple-600);
+    letter-spacing: -0.5px;
+  }
+
+  .nav-title {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--ink);
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-family: 'DM Mono', monospace;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--purple-600); }
+
+  .nav-cta {
+    background: var(--purple-600) !important;
+    color: var(--white) !important;
+    padding: 8px 18px;
+    border-radius: 6px;
+    font-family: 'DM Mono', monospace !important;
+    font-size: 13px !important;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--purple-700) !important; }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 100px 2rem 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--purple-600);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    border: 1px solid var(--purple-200);
+    background: var(--purple-50);
+    padding: 6px 14px;
+    border-radius: 100px;
+    width: fit-content;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--purple-600);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.7); }
+  }
+
+  .hero-headline {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    font-size: clamp(44px, 6vw, 80px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+    max-width: 900px;
+  }
+
+  .hero-headline .accent {
+    color: var(--purple-600);
+    position: relative;
+    display: inline-block;
+  }
+
+  .hero-headline .accent::after {
+    content: '';
+    position: absolute;
+    bottom: 6px;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--purple-200);
+    z-index: -1;
+    border-radius: 2px;
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    font-weight: 300;
+    color: #4a4060;
+    line-height: 1.7;
+    max-width: 580px;
+    margin-bottom: 3rem;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .stat-num {
+    font-family: 'DM Mono', monospace;
+    font-weight: 400;
+    font-size: 28px;
+    color: var(--purple-700);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: #7a6e95;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .hero-decoration {
+    position: absolute;
+    right: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 600px;
+    height: auto;
+    opacity: 0.08;
+    pointer-events: none;
+    filter: grayscale(100%) brightness(0.3) blur(1px);
+  }
+
+  /* ===== TICKER ===== */
+  .ticker-wrap {
+    position: relative;
+    z-index: 1;
+    background: var(--ink);
+    overflow: hidden;
+    padding: 14px 0;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .ticker-track {
+    display: flex;
+    gap: 0;
+    animation: ticker 30s linear infinite;
+    width: max-content;
+  }
+
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .ticker-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0 24px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+
+  .ticker-item .dot {
+    width: 4px;
+    height: 4px;
+    background: var(--purple-400);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ===== SECTION STYLES ===== */
+  section {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 100px 2rem;
+  }
+
+  .section-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--purple-500);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    font-size: clamp(28px, 3.5vw, 46px);
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-body {
+    font-size: 17px;
+    font-weight: 300;
+    color: #4a4060;
+    line-height: 1.8;
+    max-width: 680px;
+  }
+
+  /* ===== THREAT BOX ===== */
+  .threat-banner {
+    position: relative;
+    z-index: 1;
+    background: var(--ink);
+    padding: 80px 2rem;
+  }
+
+  .threat-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .threat-heading {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    font-size: clamp(30px, 3.5vw, 48px);
+    color: var(--white);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .threat-heading em {
+    font-style: normal;
+    color: var(--purple-300);
+  }
+
+  .threat-body {
+    font-size: 16px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.8;
+  }
+
+  .threat-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .metric-box {
+    background: rgba(255,255,255,0.03);
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .metric-box:hover {
+    background: rgba(94, 53, 212, 0.15);
+    transition: background 0.3s;
+  }
+
+  .metric-num {
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    font-size: 40px;
+    color: var(--purple-300);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .metric-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.5;
+  }
+
+  /* ===== PILLARS ===== */
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 4rem;
+  }
+
+  .pillar-card {
+    border: 1px solid rgba(78, 34, 199, 0.12);
+    border-radius: 12px;
+    padding: 40px;
+    background: var(--white);
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pillar-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--purple-600);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .pillar-card:hover::before { transform: scaleX(1); }
+
+  .pillar-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(78, 34, 199, 0.1);
+    border-color: rgba(78, 34, 199, 0.25);
+  }
+
+  .pillar-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 15px;
+    color: var(--purple-400);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .pillar-text {
+    font-size: 15px;
+    font-weight: 300;
+    color: #5a5075;
+    line-height: 1.7;
+  }
+
+  /* ===== ECOSYSTEM MONITOR ===== */
+  .ecosystem-section {
+    background: var(--purple-900);
+    padding: 80px 2rem;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .ecosystem-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(78, 34, 199, 0.15) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(78, 34, 199, 0.15) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  .ecosystem-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .eco-heading {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: clamp(32px, 4vw, 48px);
+    color: var(--white);
+    letter-spacing: -0.025em;
+    margin-bottom: 1rem;
+  }
+
+  .eco-sub {
+    font-size: 16px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 3rem;
+    max-width: 560px;
+  }
+
+  .ecosystem-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .eco-pill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 100px;
+    padding: 10px 20px;
+    transition: background 0.2s, border-color 0.2s;
+    cursor: default;
+  }
+
+  .eco-pill:hover {
+    background: rgba(94, 53, 212, 0.25);
+    border-color: rgba(164, 142, 240, 0.4);
+  }
+
+  .eco-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .eco-pill .name {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: rgba(255,255,255,0.8);
+    letter-spacing: 0.03em;
+  }
+
+  .eco-pill .count {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: rgba(255,255,255,0.35);
+  }
+
+  /* ===== TEAM ===== */
+  #team {
+  background: var(--purple-900);
+  max-width: 100%;
+  padding: 100px 2rem;
+  }
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .team-card {
+    border: 1px solid rgba(78, 34, 199, 0.12);
+    border-radius: 12px;
+    padding: 32px;
+    background: var(--white);
+    transition: box-shadow 0.25s;
+  }
+
+  .team-card:hover {
+    box-shadow: 0 12px 40px rgba(78, 34, 199, 0.08);
+  }
+
+  .team-initial {
+    width: 52px;
+    height: 52px;
+    border-radius: 10px;
+    background: var(--purple-100);
+    border: 1px solid var(--purple-200);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--purple-700);
+    margin-bottom: 1.5rem;
+  }
+
+  .team-name {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+  }
+
+  .team-role {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--purple-500);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .team-bio {
+    font-size: 14px;
+    font-weight: 300;
+    color: #5a5075;
+    line-height: 1.6;
+  }
+
+  #team .section-title {
+  color: white;
+  }
+
+  #team .section-body {
+    color: rgba(255,255,255,0.7);
+  }
+
+  #team .section-tag {
+    color: var(--purple-300);
+  }
+
+  #team .team-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  #team .team-name {
+    color: white;
+  }
+
+  #team .team-role {
+    color: var(--purple-300);
+  }
+
+  #team .team-bio {
+    color: rgba(255,255,255,0.7);
+  }
+
+  /* ===== CTA ===== */
+  .cta-section {
+    background: var(--purple-600);
+    padding: 80px 2rem;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .cta-section::after {
+    content: 'NSOC';
+    position: absolute;
+    right: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 200px;
+    color: rgba(255,255,255,0.04);
+    letter-spacing: -0.05em;
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  .cta-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-heading {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: clamp(24px, 2.8vw, 40px);
+    color: var(--white);
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .cta-sub {
+    font-size: 16px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.7);
+    margin-top: 12px;
+    max-width: 420px;
+  }
+
+  .cta-btns {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    border: none;
+  }
+
+  .btn-white {
+    background: var(--white);
+    color: var(--purple-700);
+  }
+
+  .btn-white:hover {
+    background: var(--purple-50);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.35);
+  }
+
+  .btn-outline:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.6);
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--ink);
+    padding: 48px 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-brand {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .footer-brand strong {
+    color: rgba(255,255,255,0.8);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: rgba(255,255,255,0.7); }
+
+  /* ===== ANIMATIONS ===== */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: fadeUp 0.7s ease forwards;
+  }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in:nth-child(2) { animation-delay: 0.1s; }
+  .fade-in:nth-child(3) { animation-delay: 0.2s; }
+  .fade-in:nth-child(4) { animation-delay: 0.3s; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .threat-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .threat-metrics { grid-template-columns: 1fr 1fr; }
+    .pillars-grid { grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: 1fr; }
+    .cta-inner { flex-direction: column; }
+    .hero-stats { gap: 2rem; }
+  }
+
+  @media (max-width: 480px) {
+    .threat-metrics { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">
+      <img src="logov3.png" alt="NSOC Logo" style="height: 60px; width: auto;">
+      <span class="nav-title" style="font-size: 20px;">NYU Software Supply Chain Security</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#mission">Mission</a></li>
+      <li><a href="#pillars">Pillars</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#contact" class="nav-cta">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <h1 class="hero-headline fade-in">
+    Securing the <span class="accent">open-source</span><br>foundation of software
+  </h1>
+  <p class="hero-sub fade-in">
+    NSOC is NYU's research operations center dedicated to surfacing threats across the open-source ecosystems that feed modern software.
+  </p>
+  <div class="hero-stats fade-in">
+    <div class="stat">
+      <span class="stat-num">14M+</span>
+      <span class="stat-label">Packages monitored</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">287M</span>
+      <span class="stat-label">Repositories tracked</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">24.5B</span>
+      <span class="stat-label">Dependencies indexed</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">65%</span>
+      <span class="stat-label">Orgs attacked in 2025</span>
+    </div>
+  </div>
+
+  <img class="hero-decoration" src="tree.png" alt="">
+</div>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <div class="ticker-item"><span class="dot"></span>Python Ecosystem</div>
+    <div class="ticker-item"><span class="dot"></span>Rust / cargo</div>
+    <div class="ticker-item"><span class="dot"></span>Ruby / gems</div>
+    <div class="ticker-item"><span class="dot"></span>Java / Maven</div>
+    <div class="ticker-item"><span class="dot"></span>GitHub Actions</div>
+    <div class="ticker-item"><span class="dot"></span>npm / Node.js</div>
+    <div class="ticker-item"><span class="dot"></span>Go modules</div>
+    <div class="ticker-item"><span class="dot"></span>NuGet / .NET</div>
+    <div class="ticker-item"><span class="dot"></span>Supply Chain Intelligence</div>
+    <div class="ticker-item"><span class="dot"></span>Dependency Monitoring</div>
+    <div class="ticker-item"><span class="dot"></span>AI-Driven Vuln Detection</div>
+    <div class="ticker-item"><span class="dot"></span>Trusted Publishing</div>
+    <!-- duplicate for seamless loop -->
+    <div class="ticker-item"><span class="dot"></span>Python Ecosystem</div>
+    <div class="ticker-item"><span class="dot"></span>Rust / cargo</div>
+    <div class="ticker-item"><span class="dot"></span>Ruby / gems</div>
+    <div class="ticker-item"><span class="dot"></span>Java / Maven</div>
+    <div class="ticker-item"><span class="dot"></span>GitHub Actions</div>
+    <div class="ticker-item"><span class="dot"></span>npm / Node.js</div>
+    <div class="ticker-item"><span class="dot"></span>Go modules</div>
+    <div class="ticker-item"><span class="dot"></span>NuGet / .NET</div>
+    <div class="ticker-item"><span class="dot"></span>Supply Chain Intelligence</div>
+    <div class="ticker-item"><span class="dot"></span>Dependency Monitoring</div>
+    <div class="ticker-item"><span class="dot"></span>AI-Driven Vuln Detection</div>
+    <div class="ticker-item"><span class="dot"></span>Trusted Publishing</div>
+  </div>
+</div>
+
+<!-- THREAT LANDSCAPE -->
+<div class="threat-banner" id="mission">
+  <div class="threat-inner">
+    <div>
+      <h2 class="threat-heading">The threat is <em>upstream</em> and growing fast</h2>
+      <p class="threat-body">
+        High-profile incidents from SolarWinds to the XZ Utils backdoor prove that adversaries who corrupt software reach production systems undetected. By the time a vulnerability is publicly disclosed, organizations are already exposed. Open-source malware targeting supply chains grew 73% in a single year.
+      </p>
+    </div>
+    <div class="threat-metrics">
+      <div class="metric-box">
+        <span class="metric-num">98%</span>
+        <p class="metric-desc">of codebases contain open-source components</p>
+      </div>
+      <div class="metric-box">
+        <span class="metric-num">1,180+</span>
+        <p class="metric-desc">average open-source dependencies per application</p>
+      </div>
+      <div class="metric-box">
+        <span class="metric-num">73%</span>
+        <p class="metric-desc">growth in open-source malware targeting supply chains, 2025</p>
+      </div>
+      <div class="metric-box">
+        <span class="metric-num">65%</span>
+        <p class="metric-desc">of organizations suffered a supply chain attack in 2025</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PILLARS -->
+<section id="pillars">
+  <div class="section-tag">Core Operations</div>
+  <h2 class="section-title">Four pillars of<br>supply chain defense</h2>
+  <p class="section-body">NSOC operates through a deeply integrated model of human expertise, AI tooling, and continuous ecosystem-scale monitoring.</p>
+
+  <div class="pillars-grid">
+    <div class="pillar-card">
+      <div class="pillar-num">01 — Connect</div>
+      <p class="pillar-text">Students serve as dedicated liaison between NSOC and specific open-source ecosystems. They undergo structured onboarding in norms, culture, and contribution expectations, building the credibility and trust that makes security conversations possible. </p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-num">02 — Inspect</div>
+      <p class="pillar-text">AI-driven vulnerability detection at unprecedented scale. Students develop and extend fuzzing frameworks, LLM-assisted code review pipelines, and automated patch generation agents. Led by the team that won $3M in the DARPA AIxCC challenge, NSOC's AI-assisted research pushes the frontier.</p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-num">03 — Detect</div>
+      <p class="pillar-text">Continuous monitoring powered by ecosyste.ms—covering dependency changes, anomalous package behavior, suspicious injections, and unmaintained critical components. When a threat surfaces, NSOC alerts affected organizations and coordinates responsible disclosure through ecosystem liaisons.</p>
+    </div>
+    <div class="pillar-card">
+      <div class="pillar-num">04 — Direct</div>
+      <p class="pillar-text">Annual ecosystem report cards assess security posture across trusted publishing adoption, dependency hygiene, and vulnerability responsiveness. Beyond reporting, NSOC delivers direct code integrations, working with OpenSSF, NIST, and ecosystem governance bodies to strengthen existing frameworks.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- TEAM -->
+<section id="team">
+  <div class="section-tag">Leadership</div>
+
+<h2 class="section-title">
+  World-class experts,<br>real-world impact
+</h2>
+
+<p class="section-body">
+  NSOC brings together pioneers in software supply chain security,
+  open-source intelligence, and AI-driven cybersecurity research.
+</p>
+
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-initial">JC</div>
+      <div class="team-name">Prof. Justin Cappos</div>
+      <div class="team-role">PRofessor NYU New York</div>
+      <p class="team-bio">The "father of software supply chain security." Creator of TUF, Uptane, gittuf, in-toto, and Git's security architecture, technologies now deployed in millions of cars and across critical global infrastructure.</p>
+    </div>
+    <div class="team-card">
+      <div class="team-initial">JY</div>
+      <div class="team-name">Prof. Jiahao Yu</div>
+      <div class="team-role">Assistant Professor NYU Abu Dhabi</div>
+      <p class="team-bio">Cyber-AI expert whose work on AI-driven vulnerability discovery, fuzzing, and automated patch generation earned a $3M prize in the DARPA AI Cyber Challenge (AIxCC).</p>
+    </div>
+    <div class="team-card">
+      <div class="team-initial">AN</div>
+      <div class="team-name">Andrew Nesbitt</div>
+      <div class="team-role">Founder of ecosyste.ms</div>
+      <p class="team-bio">One of the foremost researchers performing security data analysis at open-source scale. Expert in large-scale ecosystem intelligence and AI-powered prompt engineering for cybersecurity. Part of Glasswing.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section" id="contact">
+  <div class="cta-inner">
+    <div>
+      <h2 class="cta-heading">Protect your software supply chain</h2>
+      <p class="cta-sub">Connect with NSOC to enroll your organization, access ecosystem intelligence, or collaborate on research.</p>
+    </div>
+    <div class="cta-btns">
+      <a href="mailto:nsoc@nyu.edu" class="btn btn-white">Contact NSOC</a>
+      <a href="https://nyu.edu" class="btn btn-outline">NYU Tandon →</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <strong>NSOC</strong> — NYU Software Supply Chain Security Operations Center<br>
+      <span style="font-size:12px; color:rgba(255,255,255,0.25);">Powered by :) </span>
+    </div>
+    <ul class="footer-links">
+      <li><a href="#mission">Mission</a></li>
+      <li><a href="#pillars">Pillars</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="mailto:jcappos@nyu.edu">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.pillar-card, .team-card, .metric-box').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>
