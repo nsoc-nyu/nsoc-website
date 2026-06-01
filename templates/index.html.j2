@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NSOC - NYU Software Supply Chain Security Operations Center</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+  <link rel="icon" href="images/favicon/favicon.ico">
+  <link rel="manifest" href="images/favicon/site.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -55,12 +60,22 @@
 
     <section class="stats-bar">
       <div class="stats-bar-inner">
-        {% for stat in stats %}
         <div class="hero-stat">
-          <div class="hero-stat-num">{{ stat.value }}</div>
-          <div class="hero-stat-label">{{ stat.label }}</div>
+          <div class="hero-stat-num">14M+</div>
+          <div class="hero-stat-label">packages monitored via ecosyste.ms</div>
         </div>
-        {% endfor %}
+        <div class="hero-stat">
+          <div class="hero-stat-num">287M</div>
+          <div class="hero-stat-label">repositories tracked</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">24.5B</div>
+          <div class="hero-stat-label">dependencies indexed</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">65%</div>
+          <div class="hero-stat-label">of organizations hit by supply chain attacks in 2025</div>
+        </div>
       </div>
     </section>
 
@@ -68,16 +83,10 @@
       <div class="about-inner">
         <div class="section-label">About</div>
         <div class="about-content">
-          <h2>A research center dedicated to software supply chain security</h2>
-          <p>
-            Modern software is built on open-source foundations. 98% of analyzed codebases contain open-source components, with the average application depending on over 1,180 such packages. This creates an enormous, constantly shifting attack surface no single organization can monitor alone.
-          </p>
-          <p>
-            NSOC applies the open-source intelligence of <a href="https://ecosyste.ms">ecosyste.ms</a> to continuously monitor the ecosystems that feed enrolled projects, tracking dependency changes, new attack vectors, and anomalous package behavior to alert organizations before exposure becomes an incident.
-          </p>
-          <p>
-            Hosted at NYU, NSOC brings together master's students, PhD researchers, and postdoctoral associates under the supervision of world-class faculty and practitioners.
-          </p>
+          <h2>{{ about.title }}</h2>
+          {% for paragraph in about.paragraphs %}
+          <p>{{ paragraph | safe }}</p>
+          {% endfor %}
         </div>
       </div>
     </section>
@@ -134,10 +143,10 @@
       <div class="students-inner">
         <div class="students-label">Join us</div>
         <div class="students-content">
-          <h2>Join NSOC</h2>
-          <p class="sub">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
-          </p>
+          <h2>{{ join.title }}</h2>
+          {% for paragraph in join.paragraphs %}
+          <p class="sub">{{ paragraph }}</p>
+          {% endfor %}
         </div>
       </div>
     </section>
@@ -146,7 +155,7 @@
       <div class="updates-inner">
         <div class="section-label">Updates</div>
         <div class="updates-content">
-          <h2>Latest updates</h2>
+          <h2>Latest Updates</h2>
           <p class="sub">Add news, milestones, events, or opportunities here as NSOC grows.</p>
           <div class="updates-list">
             {% for update in updates %}

@@ -4,8 +4,8 @@ NSOC webpage: https://marc-cn.github.io/nsoc-website/
 
 This is a tiny Jinja2 static site. Edit the template/data files, run the build script, and publish the generated `index.html` with GitHub Pages.
 
-- Edit stable page copy and page structure in `templates/index.html.j2`.
-- Edit stats, updates, and team member cards in `content.json`.
+- Edit page structure and fixed sections, including stats, in `templates/index.html.j2`.
+- Edit About, Join Us, updates, and team member cards in `content.json`.
 - Edit visual styling in `styles.css`.
 - Put new images in `images/`, then reference them from `content.json`.
 

@@ -1,22 +1,18 @@
 {
-  "stats": [
-    {
-      "value": "14M+",
-      "label": "packages monitored via ecosyste.ms"
-    },
-    {
-      "value": "287M",
-      "label": "repositories tracked"
-    },
-    {
-      "value": "24.5B",
-      "label": "dependencies indexed"
-    },
-    {
-      "value": "65%",
-      "label": "of organizations hit by supply chain attacks in 2025"
-    }
-  ],
+  "about": {
+    "title": "A research center dedicated to software supply chain security",
+    "paragraphs": [
+      "Modern software is built on open-source foundations. 98% of analyzed codebases contain open-source components, with the average application depending on over 1,180 such packages. This creates an enormous, constantly shifting attack surface no single organization can monitor alone.",
+      "NSOC applies the open-source intelligence of <a href=\"https://ecosyste.ms\">ecosyste.ms</a> to continuously monitor the ecosystems that feed enrolled projects, tracking dependency changes, new attack vectors, and anomalous package behavior to alert organizations before exposure becomes an incident.",
+      "Hosted at NYU, NSOC brings together master's students, PhD researchers, and postdoctoral associates under the supervision of world-class faculty and practitioners."
+    ]
+  },
+  "join": {
+    "title": "Join NSOC",
+    "paragraphs": [
+    	"More information on how to join the team to follow."
+    ]
+  },
   "updates": [
     {
       "date": "Coming soon",
