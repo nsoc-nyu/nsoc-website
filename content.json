@@ -1,0 +1,47 @@
+{
+  "stats": [
+    {
+      "value": "14M+",
+      "label": "packages monitored via ecosyste.ms"
+    },
+    {
+      "value": "287M",
+      "label": "repositories tracked"
+    },
+    {
+      "value": "24.5B",
+      "label": "dependencies indexed"
+    },
+    {
+      "value": "65%",
+      "label": "of organizations hit by supply chain attacks in 2025"
+    }
+  ],
+  "updates": [
+    {
+      "date": "Coming soon",
+      "title": "NSOC launch updates",
+      "body": "Use this section for announcements, student opportunities, research milestones, and event recaps."
+    }
+  ],
+  "people": [
+    {
+      "name": "Prof. Justin Cappos",
+      "role": "NYU Tandon",
+      "image": "images/cappos.jpg",
+      "bio": "The \"father of software supply chain security.\" Creator of TUF, Uptane, gittuf, in-toto, and Git's security architecture, technologies deployed in millions of vehicles and across critical global infrastructure."
+    },
+    {
+      "name": "Prof. Jiahao Yu",
+      "role": "NYU Abu Dhabi",
+      "initials": "JY",
+      "bio": "Cyber-AI expert focused on AI-driven vulnerability discovery, fuzzing, and automated patch generation. His team won a $3M prize in the DARPA AI Cyber Challenge (AIxCC)."
+    },
+    {
+      "name": "Andrew Nesbitt",
+      "role": "Ecosyste.ms Founder",
+      "image": "images/nesbitt.jpg",
+      "bio": "Founder of ecosyste.ms. One of the foremost researchers performing security data analysis at open-source scale, with deep expertise in large-scale ecosystem intelligence and AI-powered cybersecurity tooling."
+    }
+  ]
+}

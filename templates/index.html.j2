@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NSOC - NYU Software Supply Chain Security Operations Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="nav-brand">
+        <img src="images/logov3.png" alt="NSOC Logo">
+        <span class="nav-brand-text">NSOC</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#pillars">Research</a></li>
+        <li><a href="#students">Join us</a></li>
+        <li><a href="#updates">Updates</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#contact" class="nav-contact">Contact</a></li>
+      </ul>
+      <button class="hamburger" data-menu-toggle aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#about">About</a>
+      <a href="#pillars">Research</a>
+      <a href="#students">Join us</a>
+      <a href="#updates">Updates</a>
+      <a href="#team">Team</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-left">
+          <h1>NYU Software Supply Chain Security Operations Center</h1>
+          <p class="hero-desc">
+            NSOC is building the capability to surface and address threats across the open-source ecosystems that modern software relies on.
+          </p>
+        </div>
+        <div class="hero-right-img">
+          <img src="images/tree.png" alt="">
+        </div>
+      </div>
+    </section>
+
+    <section class="stats-bar">
+      <div class="stats-bar-inner">
+        {% for stat in stats %}
+        <div class="hero-stat">
+          <div class="hero-stat-num">{{ stat.value }}</div>
+          <div class="hero-stat-label">{{ stat.label }}</div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="about-section" id="about">
+      <div class="about-inner">
+        <div class="section-label">About</div>
+        <div class="about-content">
+          <h2>A research center dedicated to software supply chain security</h2>
+          <p>
+            Modern software is built on open-source foundations. 98% of analyzed codebases contain open-source components, with the average application depending on over 1,180 such packages. This creates an enormous, constantly shifting attack surface no single organization can monitor alone.
+          </p>
+          <p>
+            NSOC applies the open-source intelligence of <a href="https://ecosyste.ms">ecosyste.ms</a> to continuously monitor the ecosystems that feed enrolled projects, tracking dependency changes, new attack vectors, and anomalous package behavior to alert organizations before exposure becomes an incident.
+          </p>
+          <p>
+            Hosted at NYU, NSOC brings together master's students, PhD researchers, and postdoctoral associates under the supervision of world-class faculty and practitioners.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="pillars-section" id="pillars">
+      <div class="pillars-inner">
+        <div class="section-label">Research Areas</div>
+        <div class="pillars-content">
+          <h2>Four pillars of operation</h2>
+          <p class="sub">NSOC integrates human ecosystem expertise, AI tooling, and continuous monitoring.</p>
+          <div class="pillars-list">
+            <div class="pillar-row">
+              <div class="pillar-label">
+                <span class="pillar-num">01</span>
+                <span class="pillar-verb">Connect</span>
+              </div>
+              <div class="pillar-body">
+                Students serve as dedicated liaisons to specific open-source ecosystems. Before engaging as security researchers, each student undergoes structured onboarding in the norms and culture of their ecosystem, building the credibility that makes security conversations possible.
+              </div>
+            </div>
+            <div class="pillar-row">
+              <div class="pillar-label">
+                <span class="pillar-num">02</span>
+                <span class="pillar-verb">Inspect</span>
+              </div>
+              <div class="pillar-body">
+                AI-driven vulnerability detection at unprecedented scale. Students develop and extend fuzzing frameworks, LLM-assisted code review pipelines, and automated patch generation agents. With a prize-winner of the DARPA AIxCC challenge, NSOC's AI-assisted research pushes the frontier forward.
+              </div>
+            </div>
+            <div class="pillar-row">
+              <div class="pillar-label">
+                <span class="pillar-num">03</span>
+                <span class="pillar-verb">Detect</span>
+              </div>
+              <div class="pillar-body">
+                Continuous monitoring powered by <a href="https://ecosyste.ms">ecosyste.ms</a>, covering dependency changes, anomalous package behavior, suspicious injections, and unmaintained critical components. NSOC coordinates responsible disclosure through ecosystem liaisons.
+              </div>
+            </div>
+            <div class="pillar-row">
+              <div class="pillar-label">
+                <span class="pillar-num">04</span>
+                <span class="pillar-verb">Direct</span>
+              </div>
+              <div class="pillar-body">
+                Annual ecosystem report cards assess security posture across trusted publishing adoption, dependency hygiene, and vulnerability responsiveness. NSOC delivers direct code integrations and coordinates with OpenSSF, NIST, and ecosystem governance bodies.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="students-section" id="students">
+      <div class="students-inner">
+        <div class="students-label">Join us</div>
+        <div class="students-content">
+          <h2>Join NSOC</h2>
+          <p class="sub">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="updates-section" id="updates">
+      <div class="updates-inner">
+        <div class="section-label">Updates</div>
+        <div class="updates-content">
+          <h2>Latest updates</h2>
+          <p class="sub">Add news, milestones, events, or opportunities here as NSOC grows.</p>
+          <div class="updates-list">
+            {% for update in updates %}
+            <article class="update-row">
+              <div class="update-date">{{ update.date }}</div>
+              <div>
+                <h3 class="update-title">{{ update.title }}</h3>
+                <p class="update-body">{{ update.body }}</p>
+              </div>
+            </article>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="team-section" id="team">
+      <div class="team-inner">
+        <div class="section-label">Leadership</div>
+        <div class="team-content">
+          <h2>Team</h2>
+          <div class="team-list">
+            {% for person in people %}
+            <article class="team-row">
+              {% if person.image %}
+              <img class="team-photo" src="{{ person.image }}" alt="{{ person.name }}">
+              {% else %}
+              <div class="team-avatar">{{ person.initials }}</div>
+              {% endif %}
+              <div class="team-info">
+                <h3 class="team-name">{{ person.name }}</h3>
+                <div class="team-role">{{ person.role }}</div>
+                <p class="team-bio">{{ person.bio }}</p>
+              </div>
+            </article>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <div class="contact-inner">
+        <div class="section-label">Contact</div>
+        <div class="contact-content">
+          <h2>Get in touch</h2>
+          <p>
+            Whether you're a student interested in joining, an organization looking to enroll, or a researcher interested in collaboration, we'd like to hear from you.
+          </p>
+          <div class="contact-actions">
+            <a href="mailto:jcappos@nyu.edu" class="btn-primary">Email NSOC</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-left">
+        <strong>NSOC</strong> - NYU Software Supply Chain Security Operations Center - Made by SSL lab with :)
+      </div>
+      <ul class="footer-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#pillars">Research</a></li>
+        <li><a href="#students">Students</a></li>
+        <li><a href="#updates">Updates</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="mailto:jcappos@nyu.edu">Contact</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
