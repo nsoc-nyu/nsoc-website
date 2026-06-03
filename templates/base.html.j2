@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{{ page.title | default(site.title) }}{% if page.title is defined and page.title != site.title %} - {{ site.brand }}{% endif %}{% endblock %}</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/favicon/apple-touch-icon.png') }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/favicon/favicon-32x32.png') }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/favicon/favicon-16x16.png') }}">
+  <link rel="icon" href="{{ asset('images/favicon/favicon.ico') }}">
+  <link rel="manifest" href="{{ asset('images/favicon/site.webmanifest') }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ asset('styles.css') }}">
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <a href="{{ url(page.brand_href | default('index.html')) }}" class="nav-brand">
+        <img src="{{ asset('images/logov3.png') }}" alt="NSOC Logo">
+        <span class="nav-brand-text">{{ site.brand }}</span>
+      </a>
+      <ul class="nav-links">
+        {% for item in page.nav | default(site.nav) %}
+        <li><a href="{{ url(item.href) }}">{{ item.label }}</a></li>
+        {% endfor %}
+        <li><a href="{{ page.contact_href | default('mailto:' ~ site.contact_email) }}" class="nav-contact">Contact</a></li>
+      </ul>
+      <button class="hamburger" data-menu-toggle aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      {% for item in page.nav | default(site.nav) %}
+      <a href="{{ url(item.href) }}">{{ item.label }}</a>
+      {% endfor %}
+      <a href="{{ page.contact_href | default('mailto:' ~ site.contact_email) }}">Contact</a>
+    </div>
+  </nav>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-left">
+        <strong>{{ site.brand }}</strong> - {{ site.footer_text }}
+      </div>
+      <ul class="footer-links">
+        {% for item in page.footer_nav | default(page.nav) | default(site.nav) %}
+        <li><a href="{{ url(item.href) }}">{{ item.label }}</a></li>
+        {% endfor %}
+        <li><a href="mailto:{{ site.contact_email }}">Contact</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="{{ asset('main.js') }}"></script>
+</body>
+</html>

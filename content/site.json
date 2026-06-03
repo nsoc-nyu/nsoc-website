@@ -1,0 +1,28 @@
+{
+  "title": "NSOC - NYU Software Supply Chain Security Operations Center",
+  "brand": "NSOC",
+  "contact_email": "jcappos@nyu.edu",
+  "nav": [
+    {
+      "label": "About",
+      "href": "index.html#about"
+    },
+    {
+      "label": "Research",
+      "href": "index.html#pillars"
+    },
+    {
+      "label": "Join us",
+      "href": "index.html#students"
+    },
+    {
+      "label": "Updates",
+      "href": "index.html#updates"
+    },
+    {
+      "label": "Team",
+      "href": "people.html"
+    }
+  ],
+  "footer_text": "NYU Software Supply Chain Security Operations Center - Made by SSL lab with :)"
+}

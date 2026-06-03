@@ -1,0 +1,171 @@
+{% extends "base.html.j2" %}
+
+{% block content %}
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-left">
+          <h1>NYU Software Supply Chain Security Operations Center</h1>
+          <p class="hero-desc">
+            NSOC is building the capability to surface and address threats across the open-source ecosystems that modern software relies on.
+          </p>
+        </div>
+        <div class="hero-right-img">
+          <img src="{{ asset('images/tree.png') }}" alt="">
+        </div>
+      </div>
+    </section>
+
+    <section class="stats-bar">
+      <div class="stats-bar-inner">
+        <div class="hero-stat">
+          <div class="hero-stat-num">14M+</div>
+          <div class="hero-stat-label">packages monitored via ecosyste.ms</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">287M</div>
+          <div class="hero-stat-label">repositories tracked</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">24.5B</div>
+          <div class="hero-stat-label">dependencies indexed</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">65%</div>
+          <div class="hero-stat-label">of organizations hit by supply chain attacks in 2025</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section" id="about">
+      <div class="about-inner">
+        <div class="section-label">About</div>
+        <div class="about-content">
+          <h2>{{ about.title }}</h2>
+          {% for paragraph in about.paragraphs %}
+          <p>{{ paragraph | safe }}</p>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <section class="pillars-section" id="pillars">
+      <div class="pillars-inner">
+        <div class="section-label">Research Areas</div>
+        <div class="pillars-content">
+          <h2>Four pillars of operation</h2>
+          <p class="sub">NSOC integrates human ecosystem expertise, AI tooling, and continuous monitoring.</p>
+          <div class="pillars-list">
+            <div class="pillar-row">
+              <div class="pillar-label">
+                <span class="pillar-num">01</span>
+                <span class="pillar-verb">Connect</span>
+              </div>
+              <div class="pillar-body">
+                Students serve as dedicated liaisons to specific open-source ecosystems. Before engaging as security researchers, each student undergoes structured onboarding in the norms and culture of their ecosystem, building the credibility that makes security conversations possible.
+              </div>
+            </div>
+            <div class="pillar-row">
+              <div class="pillar-label">
+                <span class="pillar-num">02</span>
+                <span class="pillar-verb">Inspect</span>
+              </div>
+              <div class="pillar-body">
+                AI-driven vulnerability detection at unprecedented scale. Students develop and extend fuzzing frameworks, LLM-assisted code review pipelines, and automated patch generation agents. With a prize-winner of the DARPA AIxCC challenge, NSOC's AI-assisted research pushes the frontier forward.
+              </div>
+            </div>
+            <div class="pillar-row">
+              <div class="pillar-label">
+                <span class="pillar-num">03</span>
+                <span class="pillar-verb">Detect</span>
+              </div>
+              <div class="pillar-body">
+                Continuous monitoring powered by <a href="https://ecosyste.ms">ecosyste.ms</a>, covering dependency changes, anomalous package behavior, suspicious injections, and unmaintained critical components. NSOC coordinates responsible disclosure through ecosystem liaisons.
+              </div>
+            </div>
+            <div class="pillar-row">
+              <div class="pillar-label">
+                <span class="pillar-num">04</span>
+                <span class="pillar-verb">Direct</span>
+              </div>
+              <div class="pillar-body">
+                Annual ecosystem report cards assess security posture across trusted publishing adoption, dependency hygiene, and vulnerability responsiveness. NSOC delivers direct code integrations and coordinates with OpenSSF, NIST, and ecosystem governance bodies.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="students-section" id="students">
+      <div class="students-inner">
+        <div class="students-label">Join us</div>
+        <div class="students-content">
+          <h2>{{ join.title }}</h2>
+          {% for paragraph in join.paragraphs %}
+          <p class="sub">{{ paragraph }}</p>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+
+    <section class="updates-section" id="updates">
+      <div class="updates-inner">
+        <div class="section-label">Updates</div>
+        <div class="updates-content">
+          <h2>Latest Updates</h2>
+          <p class="sub">Add news, milestones, events, or opportunities here as NSOC grows.</p>
+          <div class="updates-list">
+            {% for update in updates %}
+            <article class="update-row">
+              <div class="update-date">{{ update.date }}</div>
+              <div>
+                <h3 class="update-title">{{ update.title }}</h3>
+                <p class="update-body">{{ update.body }}</p>
+              </div>
+            </article>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="team-section" id="team">
+      <div class="team-inner">
+        <div class="section-label">Leadership</div>
+        <div class="team-content">
+          <h2>Team</h2>
+          <div class="team-list">
+            {% for person in people %}
+            <article class="team-row">
+              {% if person.image %}
+              <img class="team-photo" src="{{ asset(person.image) }}" alt="{{ person.name }}">
+              {% else %}
+              <div class="team-avatar">{{ person.initials }}</div>
+              {% endif %}
+              <div class="team-info">
+                <h3 class="team-name">{{ person.name }}</h3>
+                <div class="team-role">{{ person.role }}</div>
+                <p class="team-bio">{{ person.bio }}</p>
+              </div>
+            </article>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <div class="contact-inner">
+        <div class="section-label">Contact</div>
+        <div class="contact-content">
+          <h2>Get in touch</h2>
+          <p>
+            Whether you're a student interested in joining, an organization looking to enroll, or a researcher interested in collaboration, we'd like to hear from you.
+          </p>
+          <div class="contact-actions">
+            <a href="mailto:{{ site.contact_email }}" class="btn-primary">Email NSOC</a>
+          </div>
+        </div>
+      </div>
+    </section>
+{% endblock %}
