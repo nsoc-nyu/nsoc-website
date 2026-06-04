@@ -1,4 +1,4 @@
-NSOC webpage: https://marc-cn.github.io/nsoc-website/
+NSOC webpage: [temporary, to be fixed] http://nsoc.engineering.nyu.edu/
 
 ## Editing the site
 
