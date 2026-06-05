@@ -54,6 +54,17 @@
       "Hosted at NYU, NSOC brings together master's students, PhD researchers, and postdoctoral associates under the supervision of world-class faculty and practitioners."
     ]
   },
+  "supply_chain": {
+    "title": "Where NSOC watches",
+    "sub": "Open-source code crosses many trust boundaries on its way from a maintainer's commit to a running process. NSOC monitors each stage through <a href=\"https://ecosyste.ms\">ecosyste.ms</a>, surfacing anomalies, injections, and unmaintained components before they reach production.",
+    "stages": [
+      { "name": "Source", "vector": ["Maintainer", "Compromise"] },
+      { "name": "Build", "vector": ["Poisoned", "CI Runner"] },
+      { "name": "Publish", "vector": ["Account", "Takeover"] },
+      { "name": "Resolve", "vector": ["Dependency", "Confusion"] },
+      { "name": "Install", "vector": ["Malicious", "Postinstall"] }
+    ]
+  },
   "join": {
     "title": "Join NSOC",
     "paragraphs": [
