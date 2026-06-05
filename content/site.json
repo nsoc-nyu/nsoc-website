@@ -12,16 +12,16 @@
       "href": "index.html#pillars"
     },
     {
-      "label": "Join us",
-      "href": "index.html#students"
+      "label": "Team",
+      "href": "people.html"
     },
     {
       "label": "Updates",
       "href": "index.html#updates"
     },
     {
-      "label": "Team",
-      "href": "people.html"
+      "label": "Join us",
+      "href": "index.html#contact"
     }
   ],
   "footer_text": "NYU Software Supply Chain Security Operations Center - Made by SSL lab with :)"

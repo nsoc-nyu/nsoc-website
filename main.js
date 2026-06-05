@@ -13,6 +13,64 @@ menu.querySelectorAll("a").forEach((link) => {
 	});
 });
 
+const sectionLinks = Array.from(document.querySelectorAll("nav a[href*='#']"));
+const sectionIds = new Set(
+	sectionLinks
+		.map((link) => new URL(link.href, window.location.href).hash.slice(1))
+		.filter(Boolean)
+);
+const sections = Array.from(document.querySelectorAll("section[id]")).filter((section) =>
+	sectionIds.has(section.id)
+);
+
+function setActiveSection(id) {
+	sectionLinks.forEach((link) => {
+		const hash = new URL(link.href, window.location.href).hash.slice(1);
+		const isActive = hash === id;
+		link.classList.toggle("active", isActive);
+		if (isActive) link.setAttribute("aria-current", "page");
+		else link.removeAttribute("aria-current");
+	});
+}
+
+if (sections.length > 0) {
+	setActiveSection(window.location.hash.slice(1) || sections[0].id);
+	const activeObserver = new IntersectionObserver(
+		(entries) => {
+			const visible = entries
+				.filter((entry) => entry.isIntersecting)
+				.sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+			if (visible) setActiveSection(visible.target.id);
+		},
+		{
+			rootMargin: "-45% 0px -45% 0px",
+			threshold: [0, 0.1, 0.25, 0.5]
+		}
+	);
+	sections.forEach((section) => activeObserver.observe(section));
+}
+
+document.querySelectorAll(".hero-stat-num").forEach((counter) => {
+	const match = counter.textContent.trim().match(/^([\d.]+)(.*)$/);
+	if (!match) return;
+
+	const target = Number(match[1]);
+	const suffix = match[2];
+	const decimals = match[1].includes(".") ? match[1].split(".")[1].length : 0;
+	const duration = 1200;
+	const start = performance.now();
+
+	function update(now) {
+		const progress = Math.min((now - start) / duration, 1);
+		const eased = 1 - Math.pow(1 - progress, 3);
+		counter.textContent = `${(target * eased).toFixed(decimals)}${suffix}`;
+		if (progress < 1) requestAnimationFrame(update);
+	}
+
+	counter.textContent = `${(0).toFixed(decimals)}${suffix}`;
+	requestAnimationFrame(update);
+});
+
 const chainViz = document.querySelector(".chain-viz");
 
 if (chainViz && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {

@@ -11,7 +11,7 @@ PAGES = ROOT / "pages"
 CONTENT = ROOT / "content"
 SITE = ROOT / "_site"
 STATIC_FILES = ("styles.css", "main.js")
-STATIC_DIRS = ("images",)
+STATIC_DIRS = ("images", "assets")
 
 
 def load_json(path: Path):
