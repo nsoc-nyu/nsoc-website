@@ -1,6 +1,6 @@
 {
   "title": "NSOC - NYU Software Supply Chain Security Operations Center",
-  "brand_href": "#",
+  "brand_href": "#home",
   "contact_href": "#contact",
   "nav": [
     {
@@ -12,16 +12,16 @@
       "href": "#pillars"
     },
     {
-      "label": "Join us",
-      "href": "#students"
+      "label": "Team",
+      "href": "#team"
     },
     {
       "label": "Updates",
       "href": "#updates"
     },
     {
-      "label": "Team",
-      "href": "#team"
+      "label": "Join us",
+      "href": "#contact"
     }
   ],
   "footer_nav": [
@@ -34,20 +34,20 @@
       "href": "#pillars"
     },
     {
-      "label": "Students",
-      "href": "#students"
+      "label": "Team",
+      "href": "#team"
     },
     {
       "label": "Updates",
       "href": "#updates"
     },
     {
-      "label": "Team",
-      "href": "#team"
+      "label": "Students",
+      "href": "#contact"
     }
   ],
   "about": {
-    "title": "A research center dedicated to software supply chain security",
+    "title": "A Research Center Dedicated To Software Supply-Chain Security",
     "paragraphs": [
       "Modern software is built on open-source foundations. 98% of analyzed codebases contain open-source components, with the average application depending on over 1,180 such packages. This creates an enormous, constantly shifting attack surface no single organization can monitor alone.",
       "NSOC applies the open-source intelligence of <a href=\"https://ecosyste.ms\">ecosyste.ms</a> to continuously monitor the ecosystems that feed enrolled projects, tracking dependency changes, new attack vectors, and anomalous package behavior to alert organizations before exposure becomes an incident.",
@@ -68,7 +68,7 @@
   "join": {
     "title": "Join NSOC",
     "paragraphs": [
-      "More information on how to join the team to follow."
+	"If you're an NYU student interested in joining the team, stay tuned for updates!"
     ]
   },
   "updates": [
@@ -83,7 +83,7 @@
       "name": "Prof. Justin Cappos",
       "role": "NYU Tandon",
       "image": "images/cappos.jpg",
-      "bio": "The \"father of software supply chain security.\" Creator of TUF, Uptane, gittuf, in-toto, and Git's security architecture, technologies deployed in millions of vehicles and across critical global infrastructure."
+      "bio": "The \"father of software supply chain security.\" Creator of TUF, Uptane, gittuf, in-toto, and Git's security architecture, technologies deployed in millions of devices and across critical global infrastructure."
     },
     {
       "name": "Prof. Jiahao Yu",
@@ -93,7 +93,7 @@
     },
     {
       "name": "Andrew Nesbitt",
-      "role": "Ecosyste.ms Founder",
+      "role": "Founder, Ecosyste.ms",
       "image": "images/nesbitt.jpg",
       "bio": "Founder of ecosyste.ms. One of the foremost researchers performing security data analysis at open-source scale, with deep expertise in large-scale ecosystem intelligence and AI-powered cybersecurity tooling."
     }
