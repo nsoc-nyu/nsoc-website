@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {{ partial "meta.html" . }}
+
+    {{ if hugo.IsProduction }}
+      <style>{{ with resources.Get "main.css" | minify }}{{ .Content | safeCSS }}{{ .Publish }}{{ end }}</style>
+    {{ else }}
+      {{ $style := resources.Get "main.css" }}
+      <link rel="stylesheet" href="{{ $style.Permalink }}">
+    {{ end }}
+
+    <link rel="preload" href="/fonts/NYUPerstare-VF.woff2" as="font" type="font/woff2" crossorigin>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/logo-sq@180px.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/logo-sq@32px.png">
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav>
+          <a class="nav-home" href="/#home" aria-label="Home">
+            <img src="/images/logo.svg" alt="The NSOC logo">
+          </a>
+          <ul class="nav-links">
+            {{ partial "nav.html" . }}
+          </ul>
+          <button
+            class="hamburger"
+            data-menu-toggle
+            aria-label="Menu"
+            aria-expanded="false"
+            aria-controls="mobileMenu"
+          >
+            <span></span><span></span><span></span>
+          </button>
+          <ul class="mobile-menu" id="mobileMenu">
+            {{ partial "nav.html" . }}
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main>
+      {{ block "main" . }}{{ end }}
+    </main>
+    <footer>
+      <div class="container">
+        <div class="footer-parts">
+          <div>
+            <strong>NSOC</strong> - NYU Software Supply Chain Security Operations Center
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script>
+/* mobile navigation */
+const $menuToggle = document.querySelector("[data-menu-toggle]");
+const $menu = document.querySelector("#mobileMenu");
+
+$menuToggle.addEventListener("click", () => {
+  const isOpen = $menu.classList.toggle("open");
+  $menuToggle.setAttribute("aria-expanded", String(isOpen));
+});
+
+$menu.querySelectorAll("a").forEach(($link) => {
+  $link.addEventListener("click", () => {
+    $menu.classList.remove("open");
+    $menuToggle.setAttribute("aria-expanded", "false");
+  });
+});
+    </script>
+  </body>
+</html>
