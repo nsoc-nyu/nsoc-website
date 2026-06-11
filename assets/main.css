@@ -309,6 +309,19 @@ nav {
     }
   }
 }
+ul.forced-menu {
+  display: none;
+  list-style: none;
+  @media (max-width: 800px) {
+    display: block;
+  }
+  li {
+    a {
+      display: block;
+      padding-block: 5px;
+    }
+  }
+}
 
 .hero {
   display: flex;

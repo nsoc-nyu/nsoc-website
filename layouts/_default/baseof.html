@@ -43,6 +43,13 @@
         </nav>
       </div>
     </header>
+    <noscript>
+      <div class="container">
+        <ul class="forced-menu">
+          {{ partial "nav.html" . }}
+        </ul>
+      </div>
+    </noscript>
     <main>
       {{ block "main" . }}{{ end }}
     </main>
