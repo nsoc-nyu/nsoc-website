@@ -9,6 +9,7 @@
   --color-bg: #ffffff;
   --color-bg-alt: #f8f7fc;
 
+  --font-size-xxs: 12px;
   --font-size-xs: 14px;
   --font-size-s: 17px;
   --font-size-m: 19px;
@@ -16,6 +17,7 @@
   --font-size-xl: 40px;
   --font-size-xxl: 50px;
 
+  --line-height-xxs: 15px;
   --line-height-xs: 20px;
   --line-height-s: 25px;
   --line-height-m: 25px;
@@ -35,6 +37,7 @@
 
 @media (max-width: 900px) {
   :root {
+      --font-size-xxs: 12px;
       --font-size-xs: 15px;
       --font-size-s: 17px;
       --font-size-m: 18px;
@@ -42,6 +45,7 @@
       --font-size-xl: 35px;
       --font-size-xxl: 50px;
 
+      --line-height-xxs: 15px;
       --line-height-xs: 20px;
       --line-height-s: 25px;
       --line-height-m: 25px;
@@ -152,10 +156,6 @@ a {
   color: var(--color-purple);
   text-decoration-line: underline;
   text-decoration-style: dotted;
-  &[href^="http"]::after {
-    content: "\00a0↗";
-    white-space: nowrap;
-  }
 }
 
 .button {
@@ -518,21 +518,43 @@ section {
 }
 
 .team {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   margin-block: 30px;
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius-s);
   overflow: hidden;
+  @media (max-width: 800px) {
+    grid-template-columns: 1fr;
+  }
   .team__member {
-    display: grid;
-    grid-template-columns: 56px 1fr;
     padding: 25px;
     gap: 15px;
-    border-bottom: 1px solid var(--color-border);
-    align-items: start;
     background: var(--color-bg);
     transition: background 0.15s;
     &:hover {
       background: var(--color-bg-alt);
+    }
+    @media (min-width: 801px) {
+      border-bottom: 1px solid var(--color-border);
+      border-right: 1px solid var(--color-border);
+      &:nth-child(2n) {
+        border-right: none;
+      }
+      &:last-child, &:nth-last-child(2) {
+        border-bottom: none;
+      }
+    }
+    @media (max-width: 800px) {
+      border-bottom: 1px solid var(--color-border);
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+    .team__head {
+      display: flex;
+      align-items: center;
+      gap: 20px;
     }
     img {
       width: 45px;
@@ -550,8 +572,8 @@ section {
     i {
       display: block;
       font-family: var(--font-family-mono);
-      font-size: var(--font-size-xs);
-      line-height: var(--line-height-xs);
+      font-size: var(--font-size-xxs);
+      line-height: var(--line-height-xxs);
       color: var(--color-ink-3);
       font-style: normal;
     }
