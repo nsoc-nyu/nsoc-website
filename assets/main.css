@@ -597,3 +597,213 @@ footer {
     gap: 20px;
   }
 }
+
+@keyframes blink {
+    0%   { opacity: 1; }
+    50%  { opacity: 1; }
+    100% { opacity: 0; }
+}
+@keyframes chain-cube-horizontal {
+    0% {
+      left: 0;
+      opacity: 0;
+    }
+    10% {
+      left: calc(10% - (24px / 2));
+      opacity: 1;
+    }
+    30%  {
+      left: calc(10% - (24px / 2) + 20%);
+    }
+    50%  {
+      left: calc(10% - (24px / 2) + 40%);
+    }
+    70%  {
+      left: calc(10% - (24px / 2) + 60%);
+    }
+    90%  {
+      left: calc(10% - (24px / 2) + 80%);
+      opacity: 1;
+    }
+    100% {
+      left: 100%;
+      opacity: 0;
+    }
+}
+@keyframes chain-cube-vertical {
+    0% {
+      top: -40px;
+      opacity: 0;
+    }
+    10% {
+      top: calc(15px + 25px - (24px / 2));
+      opacity: 1;
+    }
+    30%  {
+      top: calc(15px + 25px - (24px / 2) + 20%);
+    }
+    50%  {
+      top: calc(15px + 25px - (24px / 2) + 40%);
+    }
+    70%  {
+      top: calc(15px + 25px - (24px / 2) + 60%);
+    }
+    90%  {
+      top: calc(15px + 25px - (24px / 2) + 80%);
+      opacity: 1;
+    }
+    100% {
+      top: calc(100% + 40px);
+      opacity: 0;
+    }
+}
+@keyframes chain-circle {
+    0% {
+      background: white;
+      border-color: var(--color-purple-light);
+    }
+    5% {
+      background: var(--color-purple-light);
+      border-color: var(--color-purple);
+    }
+    15% {
+      background: var(--color-purple-light);
+      border-color: var(--color-purple);
+    }
+    20% {
+      background: white;
+      border-color: var(--color-purple-light);
+    }
+    100% {
+      background: white;
+      border-color: var(--color-purple-light);
+    }
+}
+
+.chain-anim {
+  margin-top: 40px;
+  .chain-anim__desc {
+    margin-bottom: 20px;
+    text-align: right;
+    font-size: var(--font-size-s);
+    line-height: var(--line-height-s);
+    font-family: var(--font-family-mono);
+    font-variant-caps: small-caps;
+    font-feature-settings: "smcp";
+    text-transform: lowercase;
+    color: var(--color-purple);
+    &:before {
+      content: '';
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin-right: 10px;
+      border-radius: 100%;
+      background: var(--color-purple);
+      animation: blink 2s ease-in-out infinite alternate;
+    }
+  }
+  .chain-anim__chain {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @media (max-width: 650px) {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+    }
+    &:before {
+      content: '';
+      position: absolute;
+      z-index: 5;
+      top: calc(25px - 1px);
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: var(--color-purple);
+      @media (max-width: 650px) {
+        left: calc(25px - 2px);
+        top: 25px;
+        bottom: 25px;
+        right: unset;
+        width: 2px;
+        height: unset;
+      }
+    }
+  }
+  .chain-anim__cube {
+    position: absolute;
+    top: calc(25px - (24px / 2));
+    z-index: 20;
+    animation: chain-cube-horizontal 8s ease-in-out infinite;
+    @media (max-width: 650px) {
+      top: unset;
+      /* Calculated manually because this specific calculation somehow breaks on desktop Firefox and iOS Safari. Odd. */
+      left: 13px; /* 24px / 2 + 1px */
+      animation: chain-cube-vertical 8s ease-in-out infinite;
+    }
+  }
+  .chain-anim__part {
+    flex: 1;
+    text-align: center;
+    @media (max-width: 650px) {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      padding-block: 15px;
+      text-align: left;
+    }
+    .chain-anim__circle {
+      position: relative;
+      z-index: 10;
+      width: 50px;
+      height: 50px;
+      margin-inline: auto;
+      border-radius: 100%;
+      border: 2px solid var(--color-purple);
+      background: var(--color-purple-light);
+      animation: chain-circle 8s ease-in-out infinite;
+    }
+    &:nth-child(2) {
+      .chain-anim__circle {
+        animation-delay: -6.4s;
+      }
+    }
+    &:nth-child(3) {
+      .chain-anim__circle {
+        animation-delay: -4.8s;
+      }
+    }
+    &:nth-child(4) {
+      .chain-anim__circle {
+        animation-delay: -3.2s;
+      }
+    }
+    &:nth-child(5) {
+      .chain-anim__circle {
+        animation-delay: -1.6s;
+      }
+    }
+    h3 {
+      margin-top: 10px;
+      font-size: var(--font-size-xs);
+      line-height: var(--line-height-xs);
+      font-weight: 500;
+      @media (max-width: 650px) {
+        margin-top: 0;
+      }
+    }
+    i {
+      display: block;
+      margin-inline: auto;
+      margin-top: 2px;
+      max-width: 100px;
+      font-family: var(--font-family-mono);
+      font-size: var(--font-size-xs);
+      line-height: 15px;
+      font-style: normal;
+      color: var(--color-purple);
+    }
+  }
+}
