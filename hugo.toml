@@ -1,0 +1,7 @@
+baseURL = 'https://nsoc.engineering.nyu.edu/'
+locale = 'en-us'
+title = 'NSOC'
+disableKinds = ['taxonomy', 'term']
+
+[params]
+    defaultSummary = "We're building the capability to surface and address threats across the open-source ecosystems that modern software relies on."

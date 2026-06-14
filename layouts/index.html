@@ -1,0 +1,288 @@
+{{ define "main" }}
+
+<section class="hero" id="home">
+  <div class="hero__logo">
+    <img src="/images/logo.svg" alt="The NSOC Logo">
+    <h1>
+      <strong>NYU</strong><br>
+      Software Supply&#8288;&#8211;&#8288;Chain Security Operations Center
+    </h1>
+  </div>
+  <div>
+    <h2>
+      Securing the Foundations<br>
+      of Modern Software
+    </h2>
+    <p>
+      We're building the capability to surface and address threats across the open-source ecosystems that modern
+      software relies on.
+    </p>
+  </div>
+</section>
+<section class="stats-section section--alt">
+  <div class="container">
+    <div class="stats-bar">
+      <div class="stat">
+        <strong>14M+</strong>
+        <div>
+          packages monitored via <a href="https://ecosyste.ms/">ecosyste.ms</a>
+        </div>
+      </div>
+      <div class="stat">
+        <strong>287M</strong>
+        <div>repositories tracked</div>
+      </div>
+      <div class="stat">
+        <strong>24.5B</strong>
+        <div>dependencies indexed</div>
+      </div>
+      <div class="stat">
+        <strong>65%</strong>
+        <div>of organizations hit by supply chain attacks in 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="about">
+  <div class="container">
+    <div class="seclabel">About</div>
+    <div class="text-s">
+      <h2 class="sechead">A Research Center Dedicated To Software Supply-Chain Security</h2>
+      <p>
+        Modern software is built on open-source foundations. 98% of analyzed codebases contain open-source components,
+        with the average application depending on over 1,180 such packages. This creates an enormous, constantly
+        shifting attack surface no single organization can monitor alone.
+      </p>
+      <p>
+        NSOC applies the open-source intelligence of <a href="https://ecosyste.ms">ecosyste.ms</a> to continuously
+        monitor the ecosystems that feed enrolled projects, tracking dependency changes, new attack vectors, and
+        anomalous package behavior to alert organizations before exposure becomes an incident.
+      </p>
+      <p>
+        Hosted at NYU, NSOC brings together master's students, PhD researchers, and postdoctoral associates under the
+        supervision of world-class faculty and practitioners.
+      </p>
+    </div>
+    <div class="chain-anim">
+      <div class="chain-anim__desc">NSOC Monitoring</div>
+      <div class="chain-anim__chain">
+        <div class="chain-anim__part">
+          <div class="chain-anim__circle"></div>
+          <div>
+            <h3>Source</h3>
+            <i>Maintainer Compromise</i>
+          </div>
+        </div>
+        <div class="chain-anim__part">
+          <div class="chain-anim__circle"></div>
+          <div>
+            <h3>Build</h3>
+            <i>Poisoned CI Runner</i>
+          </div>
+        </div>
+        <div class="chain-anim__part">
+          <div class="chain-anim__circle"></div>
+          <div>
+            <h3>Publish</h3>
+            <i>Account Takeover</i>
+          </div>
+        </div>
+        <div class="chain-anim__part">
+          <div class="chain-anim__circle"></div>
+          <div>
+            <h3>Resolve</h3>
+            <i>Dependency Confusion</i>
+          </div>
+        </div>
+        <div class="chain-anim__part">
+          <div class="chain-anim__circle"></div>
+          <div>
+            <h3>Install</h3>
+            <i>Malicious Postinstall</i>
+          </div>
+        </div>
+        <svg class="chain-anim__cube" width="24" height="24" version="1.1" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><path d="m225.6 62.64-88-48.17a19.91 19.91 0 0 0-19.2 0l-88 48.17a20 20 0 0 0-10.4 17.55v95.62a20 20 0 0 0 10.4 17.55l88 48.17a19.89 19.89 0 0 0 19.2 0l88-48.17a20 20 0 0 0 10.4-17.55v-95.62a20 20 0 0 0-10.4-17.55z" fill="#fff"/><path d="M225.6,62.64l-88-48.17a19.91,19.91,0,0,0-19.2,0l-88,48.17A20,20,0,0,0,20,80.19v95.62a20,20,0,0,0,10.4,17.55l88,48.17a19.89,19.89,0,0,0,19.2,0l88-48.17A20,20,0,0,0,236,175.81V80.19A20,20,0,0,0,225.6,62.64ZM128,36.57,200,76,128,115.4,56,76ZM44,96.79l72,39.4v76.67L44,173.44Zm96,116.07V136.19l72-39.4v76.65Z" fill="#3d1a9e"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section--alt" id="pillars">
+  <div class="container">
+    <div class="seclabel">Research Areas</div>
+    <div class="pillars-content">
+      <h2 class="sechead">The Four Pillars of Operation</h2>
+      <p class="secdesc">NSOC integrates human ecosystem expertise, AI tooling, and continuous monitoring.</p>
+      <div class="pillars">
+        <div class="pillar">
+          <h3>
+            <span>01</span>
+            <strong>Connect</strong>
+          </h3>
+          <p>
+            Students serve as dedicated liaisons to specific open-source ecosystems. Before engaging as security
+            researchers, each student undergoes structured onboarding in the norms and culture of their ecosystem,
+            building the credibility that makes security conversations possible.
+          </p>
+        </div>
+        <div class="pillar">
+          <h3>
+            <span>02</span>
+            <strong>Inspect</strong>
+          </h3>
+          <p>
+            AI-driven vulnerability detection at unprecedented scale. Students develop and extend fuzzing frameworks,
+            LLM-assisted code review pipelines, and automated patch generation agents. With a prize-winner of the DARPA
+            AIxCC challenge, NSOC's AI-assisted research pushes the frontier forward.
+          </p>
+        </div>
+        <div class="pillar">
+          <h3>
+            <span>03</span>
+            <strong>Detect</strong>
+          </h3>
+          <p>
+            Continuous monitoring powered by <a href="https://ecosyste.ms">ecosyste.ms</a>, covering dependency changes,
+            anomalous package behavior, suspicious injections, and unmaintained critical components. NSOC coordinates
+            responsible disclosure through ecosystem liaisons.
+          </p>
+        </div>
+        <div class="pillar">
+          <h3>
+            <span>04</span>
+            <strong>Direct</strong>
+          </h3>
+          <p>
+            Annual ecosystem report cards assess security posture across trusted publishing adoption, dependency
+            hygiene, and vulnerability responsiveness. NSOC delivers direct code integrations and coordinates with
+            OpenSSF, NIST, and ecosystem governance bodies.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="team">
+  <div class="container">
+    <div class="seclabel">Leadership</div>
+    <h2 class="sechead">Team</h2>
+    <div class="team">
+      <div class="team__member">
+        <div class="team__head">
+          <img
+            src="/images/team/justin@300px.webp"
+            alt="A portrait of Prof. Justin Cappos"
+          >
+          <div>
+            <h3>Prof. Justin Cappos</h3>
+            <i>NYU Tandon</i>
+          </div>
+        </div>
+        <p>
+          The “father of software supply chain security”. Creator of TUF, Uptane, gittuf, in-toto, and Git's
+          security architecture, technologies deployed in millions of devices and across critical global
+          infrastructure.
+        </p>
+      </div>
+      <div class="team__member">
+        <div class="team__head">
+          <img
+            src="/images/team/jiahao@300px.webp"
+            alt="A portrait of Prof. Jiahao Yu"
+          >
+          <div>
+            <h3>Prof. Jiahao Yu</h3>
+            <i>NYU Abu Dhabi</i>
+          </div>
+        </div>
+        <p>
+          Cyber-AI expert focused on AI-driven vulnerability discovery, fuzzing, and automated patch generation. His
+          team won a $3M prize in the DARPA AI Cyber Challenge (AIxCC).
+        </p>
+      </div>
+      <div class="team__member">
+        <div class="team__head">
+          <img
+            src="/images/team/andrew@300px.webp"
+            alt="A portrait of Andrew Nesbitt"
+          >
+          <div>
+            <h3>Andrew Nesbitt</h3>
+            <i>Founder, Ecosyste.ms</i>
+          </div>
+        </div>
+        <p>
+          Founder of
+          <a href="https://ecosyste.ms" target="_blank">ecosyste.ms</a>.
+          One of the foremost researchers performing security data analysis at open-source scale, with deep expertise
+          in large-scale ecosystem intelligence and AI-powered cybersecurity tooling.
+        </p>
+      </div>
+      <div class="team__member">
+        <div class="team__head">
+          <img
+            src="/images/team/vlad@300px.webp"
+            alt="A portrait of Vlad-Stefan Harbuz"
+          >
+          <div>
+            <h3>Vlad-Stefan Harbuz</h3>
+            <i>Founder, Software Stewardship Lab</i>
+          </div>
+        </div>
+        <p>
+          Director of the
+          <a href="https://opensourcepledge.com/" target="_blank">Open Source Pledge</a>, which has raised $7,156,281 for maintainers.
+          <a href="https://thanks.dev" target="_blank">thanks.dev</a> core developer.
+          Helped build software used by the Gates Foundation to allocate $1B in healthcare funding.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section--alt" id="contact">
+  <div class="container">
+    <div class="contact">
+      <div>
+        <div class="seclabel">Contact</div>
+        <h2 class="sechead">Get in touch</h2>
+        <p>
+          Whether you're a student interested in joining, an organization looking to enroll, or a researcher interested
+          in collaboration, we'd like to hear from you.
+        </p>
+        <a href="mailto:jcappos@nyu.edu" class="button">Email NSOC</a>
+      </div>
+      <div>
+        <div class="seclabel">Students</div>
+        <h2 class="sechead">Join NSOC</h2>
+        <p>
+          If you're an NYU student interested in joining the team, stay tuned for updates!
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+/* stat counter animation */
+document.querySelectorAll(".stats-bar .stat strong").forEach((counter) => {
+  const match = counter.textContent.trim().match(/^([\d.]+)(.*)$/);
+  if (!match) return;
+
+  const target = Number(match[1]);
+  const suffix = match[2];
+  const decimals = match[1].includes(".") ? match[1].split(".")[1].length : 0;
+  const duration = 1200;
+  const start = performance.now();
+
+  function update(now) {
+    const progress = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    counter.textContent = `${(target * eased).toFixed(decimals)}${suffix}`;
+    if (progress < 1) requestAnimationFrame(update);
+  }
+
+  counter.textContent = `${(0).toFixed(decimals)}${suffix}`;
+  requestAnimationFrame(update);
+});
+</script>
+
+{{ end }}
