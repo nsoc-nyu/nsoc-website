@@ -156,6 +156,7 @@ a {
   color: var(--color-purple);
   text-decoration-line: underline;
   text-decoration-style: dotted;
+  transition: color 0.15s;
 }
 
 .button {
@@ -589,6 +590,12 @@ section {
       line-height: var(--line-height-xxs);
       color: var(--color-ink-3);
       font-style: normal;
+      a {
+        color: var(--color-ink-3);
+        &:hover {
+          color: var(--color-purple);
+        }
+      }
     }
     p {
       font-size: var(--font-size-xs);
