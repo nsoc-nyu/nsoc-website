@@ -5,3 +5,4 @@ disableKinds = ['taxonomy', 'term']
 
 [params]
     defaultSummary = "We're building the capability to surface and address threats across the open-source ecosystems that modern software relies on."
+    applicationFormURL = "https://forms.gle/CYgELG6CYSYGd1vj7"

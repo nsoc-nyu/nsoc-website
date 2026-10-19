@@ -33,6 +33,7 @@
 
   --nav-height: 64px;
   --nav-control-height: 44px;
+  --announce-height: 48px;
 }
 
 @media (max-width: 900px) {
@@ -175,6 +176,82 @@ a {
   }
 }
 
+.announce {
+  height: var(--announce-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 0 20px;
+  background: linear-gradient(90deg, #2d1570, var(--color-purple) 50%, #2d1570);
+  color: #fff;
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-s);
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 6px 20px rgba(61, 26, 158, 0.25);
+  .announce__tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.16);
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-xxs);
+    line-height: var(--line-height-xxs);
+    text-transform: uppercase;
+  }
+  .announce__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #7cf2b0;
+    animation: announce-pulse 1.8s ease-out infinite;
+  }
+  .announce__text--short {
+    display: none;
+  }
+  .announce__cta {
+    padding: 4px 14px;
+    border-radius: 999px;
+    background: #fff;
+    color: var(--color-purple);
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-xs);
+    font-weight: 700;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  &:hover .announce__cta {
+    transform: translateX(2px);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+  }
+  @media (max-width: 700px) {
+    gap: 10px;
+    .announce__text--long {
+      display: none;
+    }
+    .announce__text--short {
+      display: inline;
+    }
+  }
+  @media (max-width: 520px) {
+    .announce__tag {
+      display: none;
+    }
+  }
+}
+@keyframes announce-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(124, 242, 176, 0.7); }
+  100% { box-shadow: 0 0 0 8px rgba(124, 242, 176, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .announce .announce__dot {
+    animation: none;
+  }
+}
+
 header {
   background: transparent;
   position: sticky;
@@ -182,6 +259,7 @@ header {
   z-index: 50;
 }
 nav {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -448,6 +526,9 @@ section {
   border-bottom: 1px solid var(--color-border);
   &[id] {
     scroll-margin-top: var(--nav-height);
+    body:has(.announce) & {
+      scroll-margin-top: calc(var(--nav-height) + var(--announce-height));
+    }
   }
   &.section--alt {
     background: var(--color-bg-alt);

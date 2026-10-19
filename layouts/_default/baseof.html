@@ -20,6 +20,14 @@
   </head>
   <body>
     <header>
+      {{ with site.Params.applicationFormURL }}
+        <a class="announce" href="{{ . }}" target="_blank" rel="noopener">
+          <span class="announce__tag"><span class="announce__dot"></span>Now recruiting</span>
+          <span class="announce__text announce__text--long">Applications are open for NYU students to join NSOC!</span>
+          <span class="announce__text announce__text--short">Applications open</span>
+          <span class="announce__cta">Apply Now &rarr;</span>
+        </a>
+      {{ end }}
       <div class="container">
         <nav>
           <a class="nav-home" href="/#home" aria-label="Home">
